@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.ricardo.reposgithub.R
 import br.com.ricardo.reposgithub.data.model.Repo
+import br.com.ricardo.reposgithub.presentation.repodetail.ui.RepoDetailActivity
 import br.com.ricardo.reposgithub.presentation.repolist.repository.RepoResitoryImpl
 import br.com.ricardo.reposgithub.presentation.repolist.ui.adapter.RepoListAdapter
 import br.com.ricardo.reposgithub.presentation.repolist.viewmodel.RepoViewModel
@@ -15,7 +16,7 @@ import kotlinx.android.synthetic.main.activity_repo_list.*
 class RepoListActivity : AppCompatActivity() {
 
 
-    private val viewModel : RepoViewModel by lazy {
+    private val viewModel: RepoViewModel by lazy {
         RepoViewModel.ViewModelFactory(RepoResitoryImpl()).create(RepoViewModel::class.java)
     }
 
@@ -26,10 +27,18 @@ class RepoListActivity : AppCompatActivity() {
 
         viewModel.repoList.observe(this, Observer {
             it?.let { repo ->
-                with(git_recycler){
-                    layoutManager = LinearLayoutManager(this@RepoListActivity, LinearLayoutManager.VERTICAL, false)
+                with(git_recycler) {
+                    layoutManager = LinearLayoutManager(this@RepoListActivity,
+                        LinearLayoutManager.VERTICAL, false
+                    )
                     setHasFixedSize(true)
-                    adapter = RepoListAdapter(repo)
+                    adapter = RepoListAdapter(repo) { repo ->
+                        this@RepoListActivity.startActivity(
+                            RepoDetailActivity.getStartIntent(
+                                this@RepoListActivity
+                            )
+                        )
+                    }
                 }
             }
         })

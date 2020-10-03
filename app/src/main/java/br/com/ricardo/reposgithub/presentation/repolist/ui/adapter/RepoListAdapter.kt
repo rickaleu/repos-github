@@ -8,13 +8,14 @@ import br.com.ricardo.reposgithub.R
 import br.com.ricardo.reposgithub.data.model.Repo
 import kotlinx.android.synthetic.main.item_git.view.*
 
-class RepoListAdapter(private val repoList: List<Repo>)
+class RepoListAdapter(private val repoList: List<Repo>,
+                      private val onClickListener: ((repo: Repo) -> Unit))
     : RecyclerView.Adapter<RepoListAdapter.RepoViewHolder>() {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RepoViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_git, parent, false)
-        return RepoViewHolder(view)
+        return RepoViewHolder(view, onClickListener)
     }
 
     override fun onBindViewHolder(holder: RepoViewHolder, position: Int) {
@@ -23,17 +24,19 @@ class RepoListAdapter(private val repoList: List<Repo>)
 
     override fun getItemCount() = repoList.count()
 
-    class RepoViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class RepoViewHolder(private val itemView: View, private val onClickListener: (repo: Repo) -> Unit)
+        : RecyclerView.ViewHolder(itemView) {
 
         private val id = itemView.item_text_id
         private val name = itemView.item_text_name
 
         fun bindView(repo: Repo) {
 
-            id.text = repo.id.toString()
             name.text = repo.name
 
+            itemView.setOnClickListener {
+                onClickListener.invoke(repo)
+            }
         }
-
     }
 }

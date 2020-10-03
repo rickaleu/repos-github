@@ -5,5 +5,5 @@ import br.com.ricardo.reposgithub.data.model.Repo
 
 interface RepoRepository {
 
-    suspend fun fetchRepoList(repoResultCallBack: (result: RepoListResult) -> Unit) : List<Repo>
+    suspend fun fetchRepoList(repoResultCallBack: (result: RepoListResult) -> Unit)
 }
