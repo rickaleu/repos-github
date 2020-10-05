@@ -24,10 +24,10 @@ class RepoViewModel(private val repository: RepoRepository) : ViewModel() {
         get() = _viewFlipperMutableLiveData
 
 
-    fun getRepoList() {
+    fun getRepoList(page: Int) {
         viewModelScope.launch {
             withContext(Dispatchers.Main) {
-                repository.fetchRepoList { repoResult: RepoListResult ->
+                repository.fetchRepoList(page) { repoResult: RepoListResult ->
                     when (repoResult) {
                         is RepoListResult.Success -> {
                             _repoListMutableLiveData.postValue(repoResult.repoList)

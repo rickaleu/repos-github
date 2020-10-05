@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import br.com.ricardo.reposgithub.R
 import br.com.ricardo.reposgithub.data.model.Repo
+import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.item_git.view.*
 
 class RepoListAdapter(private val repoList: List<Repo>,
@@ -27,12 +28,19 @@ class RepoListAdapter(private val repoList: List<Repo>,
     class RepoViewHolder(private val itemView: View, private val onClickListener: (repo: Repo) -> Unit)
         : RecyclerView.ViewHolder(itemView) {
 
-        private val id = itemView.item_text_id
+        private val image = itemView.item_image
         private val name = itemView.item_text_name
+        private val stars = itemView.item_text_stars
 
         fun bindView(repo: Repo) {
 
+            Glide
+                .with(itemView.context)
+                .load(repo.owner.avatar)
+                .into(image)
+
             name.text = repo.name
+            stars.text = repo.stars.toString()
 
             itemView.setOnClickListener {
                 onClickListener.invoke(repo)

@@ -5,6 +5,8 @@ import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
 data class RepoGitHubBodyResponse(
+    @Json(name = "total_count")
+    val totalCount : Int,
     @Json(name = "items")
     val repoResponseItems: List<RepoGitHubItemResponse>
 )

@@ -14,7 +14,7 @@ object RetrofitClient {
 
         retrofit = Retrofit.Builder()
             .addConverterFactory(MoshiConverterFactory.create())
-            .baseUrl(RepoGitHubConstants.GITHUB_URL)
+            .baseUrl(RepoGitHubConstants.BASE_URL)
             .client(client.build())
             .build()
 

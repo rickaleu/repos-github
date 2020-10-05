@@ -15,18 +15,17 @@ import retrofit2.Response
 class RepoResitoryImpl : RepoRepository {
 
     private val service = RetrofitClient.SERVICE
-
-    override suspend fun fetchRepoList(repoResultCallBack: (result: RepoListResult) -> Unit) {
-
-        var resultRepoList = mutableListOf<Repo>()
-
+    override suspend fun fetchRepoList(page: Int, repoResultCallBack: (result: RepoListResult) -> Unit) {
         CoroutineScope(Dispatchers.IO).launch {
-            val response = service.getRepositories()
+
+            val resultRepoList = mutableListOf<Repo>()
+
+            val response = service.getRepositories(page)
             withContext(Dispatchers.Main) {
                 try {
                     if (response.isSuccessful) {
-                        response.body()?.let {
-                            for (item in it.repoResponseItems) {
+                        response.body()?.let { response ->
+                            for (item in response.repoResponseItems) {
                                 val result = item.getRepoModel()
                                 resultRepoList.add(result)
                             }
@@ -39,5 +38,9 @@ class RepoResitoryImpl : RepoRepository {
                 }
             }
         }
+
+
     }
+
+
 }

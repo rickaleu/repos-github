@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Repos GitHub</string>
+
+    <!-- Detail -->
+    <string name="detail_title_info">Informações</string>
+
 </resources>
