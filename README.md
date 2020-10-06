@@ -1,9 +1,9 @@
 # Desafio Android:
 
 <p align="center">
-  <img src="images/app.gif" align="center" width=150>
-  <img src="images/app.gif" align="center" width=150>
-  <img src="images/app.gif" align="center" width=150>
+  <img src="images/app1.png" align="center" width=150>
+  <img src="images/app2.png" align="center" width=150>
+  <img src="images/app3.png" align="center" width=150>
 </p>
 <a name="flow" />
 
@@ -44,7 +44,7 @@ Opcionais:
 A arquitetura utilizada foi a MVVM (Model View ViewModel), separados por features com 3 camadas: repository, viewmodel e ui.
 
 <p align="center">
-  <img src="images/mvp-architecture.png" align="center" width=350>
+  <img src="images/mvp.png" align="center" width=350>
 </p>
 
 <a name="resources" />
