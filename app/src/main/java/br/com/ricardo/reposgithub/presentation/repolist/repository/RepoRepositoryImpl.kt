@@ -15,6 +15,7 @@ import retrofit2.Response
 class RepoRepositoryImpl : RepoRepository {
 
     private val service = RetrofitClient.SERVICE
+
     override suspend fun fetchRepoList(page: Int, repoResultCallBack: (result: RepoListResult) -> Unit) {
         CoroutineScope(Dispatchers.IO).launch {
 
@@ -40,9 +41,6 @@ class RepoRepositoryImpl : RepoRepository {
                 }
             }
         }
-
-
     }
-
 
 }
