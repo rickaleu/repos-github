@@ -2,7 +2,7 @@
 
 <p align="center">
   <img src="images/app1.png" align="center" width=150>
-  <img src="images/app2.png" align="center" width=150>
+  <img src="images/app2.png" align="center" width=300>
   <img src="images/app3.png" align="center" width=150>
 </p>
 <a name="flow" />
