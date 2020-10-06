@@ -4,4 +4,9 @@
     <!-- Detail -->
     <string name="detail_title_info">Informações</string>
 
+    <!-- Error Messages -->
+    <string name="repo_no_network">Sem conexão. Verifique a sua internet</string>
+    <string name="repo_view_flipper_error_422">Entidade não processada</string>
+    <string name="repo_view_flipper_error_500">Erro do Servidor</string>
+
 </resources>

@@ -7,5 +7,7 @@ object RepoGitHubConstants {
     const val GET_FIELD_2 = "stars"
     const val GET_FIELD_3 = 1
 
+    const val HTTP_ERROR_UNPROCESSABLE_ENTITY = 422
+
 
 }

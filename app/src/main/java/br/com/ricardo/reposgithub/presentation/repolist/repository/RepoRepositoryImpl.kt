@@ -12,7 +12,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class RepoResitoryImpl : RepoRepository {
+class RepoRepositoryImpl : RepoRepository {
 
     private val service = RetrofitClient.SERVICE
     override suspend fun fetchRepoList(page: Int, repoResultCallBack: (result: RepoListResult) -> Unit) {
@@ -21,7 +21,7 @@ class RepoResitoryImpl : RepoRepository {
             val resultRepoList = mutableListOf<Repo>()
 
             val response = service.getRepositories(page)
-            withContext(Dispatchers.Main) {
+            withContext(Dispatchers.IO) {
                 try {
                     if (response.isSuccessful) {
                         response.body()?.let { response ->
@@ -31,6 +31,8 @@ class RepoResitoryImpl : RepoRepository {
                             }
                             repoResultCallBack.invoke(RepoListResult.Success(resultRepoList))
                         }
+                    } else {
+                        repoResultCallBack.invoke(RepoListResult.ApiError(response.code()))
                     }
 
                 } catch (e: Exception) {
